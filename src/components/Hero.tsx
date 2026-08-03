@@ -456,7 +456,7 @@ export function Hero() {
       </div>
 
       <div className="hero-lottie" aria-hidden="true">
-        <DotLottieReact src="/lottie/steampunk-letter.json" loop autoplay />
+        <DotLottieReact src={`${import.meta.env.BASE_URL}lottie/steampunk-letter.json`} loop autoplay />
       </div>
 
       <div className="hero-gears" aria-hidden="true">

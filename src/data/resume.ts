@@ -76,6 +76,9 @@ export interface SiteContent {
 }
 
 const email = 'jair.frison@gmail.com'
+
+/** Início da carreira em 2020: os "anos de experiência" se atualizam sozinhos. */
+const yearsOfExperience = new Date().getFullYear() - 2020
 const name = 'Jair Frison Júnior'
 
 const pt: SiteContent = {
@@ -84,10 +87,10 @@ const pt: SiteContent = {
     role: 'Engenheiro de Software Sênior',
     email,
     summary:
-      'Engenheiro de Software Sênior orientado a resultados com mais de 5 anos de experiência na arquitetura e escalonamento de aplicações web e mobile de alto desempenho. Especialista no ecossistema JavaScript/TypeScript — React, React Native, Next.js e Node.js — com histórico comprovado de redução de débito técnico, otimização de performance do lado do cliente e design de bibliotecas de componentes reutilizáveis que aceleram o time-to-market. Apaixonado por orientar equipes multifuncionais, reforçar a qualidade do código e preencher a lacuna entre requisitos de negócios complexos e soluções técnicas robustas e acessíveis (a11y).',
+      `Engenheiro de Software Sênior orientado a resultados com mais de ${yearsOfExperience} anos de experiência na arquitetura e escalonamento de aplicações web e mobile de alto desempenho. Especialista no ecossistema JavaScript/TypeScript — React, React Native, Next.js e Node.js — com histórico comprovado de redução de débito técnico, otimização de performance do lado do cliente e design de bibliotecas de componentes reutilizáveis que aceleram o time-to-market. Apaixonado por orientar equipes multifuncionais, reforçar a qualidade do código e preencher a lacuna entre requisitos de negócios complexos e soluções técnicas robustas e acessíveis (a11y).`,
   },
   highlights: [
-    { value: '5+', label: 'anos de experiência' },
+    { value: `${yearsOfExperience}+`, label: 'anos de experiência' },
     { value: '50k+', label: 'usuários atendidos' },
     { value: '40%', label: 'menos bugs de UI' },
     { value: '45%', label: 'carregamento mais rápido' },
@@ -228,10 +231,10 @@ const en: SiteContent = {
     role: 'Senior Software Engineer',
     email,
     summary:
-      'Results-driven Senior Software Engineer with 5+ years of experience architecting and scaling high-performance web and mobile applications. Specialist in the JavaScript/TypeScript ecosystem — React, React Native, Next.js and Node.js — with a proven track record of reducing technical debt, optimizing client-side performance and designing reusable component libraries that accelerate time-to-market. Passionate about mentoring cross-functional teams, enforcing code quality and bridging the gap between complex business requirements and robust, accessible (a11y) technical solutions.',
+      `Results-driven Senior Software Engineer with ${yearsOfExperience}+ years of experience architecting and scaling high-performance web and mobile applications. Specialist in the JavaScript/TypeScript ecosystem — React, React Native, Next.js and Node.js — with a proven track record of reducing technical debt, optimizing client-side performance and designing reusable component libraries that accelerate time-to-market. Passionate about mentoring cross-functional teams, enforcing code quality and bridging the gap between complex business requirements and robust, accessible (a11y) technical solutions.`,
   },
   highlights: [
-    { value: '5+', label: 'years of experience' },
+    { value: `${yearsOfExperience}+`, label: 'years of experience' },
     { value: '50k+', label: 'users served' },
     { value: '40%', label: 'fewer UI bugs' },
     { value: '45%', label: 'faster load times' },

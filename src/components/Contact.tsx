@@ -61,7 +61,7 @@ export function Contact() {
         </div>
         <div className="contact-layout">
           <div className="contact-machine" aria-hidden="true">
-            <DotLottieReact src="/lottie/mashina.lottie" loop autoplay />
+            <DotLottieReact src={`${import.meta.env.BASE_URL}lottie/mashina.lottie`} loop autoplay />
           </div>
           <div className="contact-card metal-panel rivets">
             <Gear size={72} teeth={12} spokes={5} className="contact-gear" color="#8a6a2f" />
