@@ -4,6 +4,7 @@ export interface Profile {
   name: string
   role: string
   email: string
+  linkedin: string
   summary: string
 }
 
@@ -62,6 +63,8 @@ export interface UiStrings {
   contactTitle: string
   contactText: string
   contactEmailButton: string
+  contactLinkedInButton: string
+  linkedinAria: string
   footerNote: string
 }
 
@@ -76,6 +79,7 @@ export interface SiteContent {
 }
 
 const email = 'jair.frison@gmail.com'
+const linkedin = 'https://www.linkedin.com/in/frisonjr'
 
 /** Início da carreira em 2020: os "anos de experiência" se atualizam sozinhos. */
 const yearsOfExperience = new Date().getFullYear() - 2020
@@ -86,6 +90,7 @@ const pt: SiteContent = {
     name,
     role: 'Engenheiro de Software Sênior',
     email,
+    linkedin,
     summary:
       `Engenheiro de Software Sênior orientado a resultados com mais de ${yearsOfExperience} anos de experiência na arquitetura e escalonamento de aplicações web e mobile de alto desempenho. Especialista no ecossistema JavaScript/TypeScript — React, React Native, Next.js e Node.js — com histórico comprovado de redução de débito técnico, otimização de performance do lado do cliente e design de bibliotecas de componentes reutilizáveis que aceleram o time-to-market. Apaixonado por orientar equipes multifuncionais, reforçar a qualidade do código e preencher a lacuna entre requisitos de negócios complexos e soluções técnicas robustas e acessíveis (a11y).`,
   },
@@ -219,8 +224,10 @@ const pt: SiteContent = {
     educationStamp: 'REGISTRADO',
     contactTitle: 'Vamos construir a próxima máquina juntos?',
     contactText:
-      'Estou disponível para novos projetos, consultorias e boas conversas sobre engenharia de software. Acione o botão abaixo.',
+      'Estou disponível para novos projetos, consultorias e boas conversas sobre engenharia de software. Acione um dos botões abaixo.',
     contactEmailButton: '✉ Enviar correspondência',
+    contactLinkedInButton: 'LinkedIn',
+    linkedinAria: 'Abrir perfil no LinkedIn em uma nova aba',
     footerNote: 'forjado a vapor com React, TypeScript e anime.js',
   },
 }
@@ -230,6 +237,7 @@ const en: SiteContent = {
     name,
     role: 'Senior Software Engineer',
     email,
+    linkedin,
     summary:
       `Results-driven Senior Software Engineer with ${yearsOfExperience}+ years of experience architecting and scaling high-performance web and mobile applications. Specialist in the JavaScript/TypeScript ecosystem — React, React Native, Next.js and Node.js — with a proven track record of reducing technical debt, optimizing client-side performance and designing reusable component libraries that accelerate time-to-market. Passionate about mentoring cross-functional teams, enforcing code quality and bridging the gap between complex business requirements and robust, accessible (a11y) technical solutions.`,
   },
@@ -365,6 +373,8 @@ const en: SiteContent = {
     contactText:
       'I am available for new projects, consulting and good conversations about frontend engineering. Pull one of the levers below.',
     contactEmailButton: '✉ Send correspondence',
+    contactLinkedInButton: 'LinkedIn',
+    linkedinAria: 'Open LinkedIn profile in a new tab',
     footerNote: 'steam-forged with React, TypeScript and anime.js',
   },
 }

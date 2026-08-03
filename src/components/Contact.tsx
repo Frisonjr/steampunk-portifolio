@@ -68,8 +68,20 @@ export function Contact() {
             <h3>{ui.contactTitle}</h3>
             <p>{ui.contactText}</p>
             <div className="contact-actions">
-              <a href={`mailto:${profile.email}`} className="brass-button">
+              {/* <a href={`mailto:${profile.email}`} className="brass-button">
                 {ui.contactEmailButton}
+              </a> */}
+              <a
+                href={profile.linkedin}
+                className="brass-button"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={ui.linkedinAria}
+              >
+                <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="currentColor">
+                  <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.4 8.1h4.2V23H.4V8.1zm7.1 0h4.02v2.03h.06c.56-1.06 1.93-2.18 3.97-2.18 4.25 0 5.03 2.8 5.03 6.44V23h-4.19v-7.32c0-1.75-.03-4-2.44-4-2.44 0-2.81 1.9-2.81 3.87V23H7.5V8.1z" />
+                </svg>
+                {ui.contactLinkedInButton}
               </a>
             </div>
           </div>

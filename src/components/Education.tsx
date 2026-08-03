@@ -12,13 +12,31 @@ function Gauge({ lang }: { lang: Language }) {
   const ref = useReveal<HTMLDivElement>(() => {
     const needle = needleRef.current
     if (!needle) return
+
+    const baseAngle = -90 + 180 * (lang.gauge / 100)
+    // Perto das extremidades o balanço fica menor pra não sair do arco
+    const wobble = lang.gauge >= 95 || lang.gauge <= 5 ? 1.6 : 2.8
     const target = { angle: -90 }
+
+    const apply = () => {
+      needle.setAttribute('transform', `rotate(${target.angle} 60 62)`)
+    }
+
     animate(target, {
-      angle: -90 + 180 * (lang.gauge / 100),
+      angle: baseAngle,
       duration: 1800,
       ease: 'outElastic(1, .6)',
-      onUpdate: () => {
-        needle.setAttribute('transform', `rotate(${target.angle} 60 62)`)
+      onUpdate: apply,
+      onComplete: () => {
+        target.angle = baseAngle - wobble
+        animate(target, {
+          angle: baseAngle + wobble,
+          duration: 1600 + Math.random() * 600,
+          ease: 'inOutSine',
+          alternate: true,
+          loop: true,
+          onUpdate: apply,
+        })
       },
     })
   }, 0.5)

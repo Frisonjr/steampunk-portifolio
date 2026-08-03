@@ -9,23 +9,32 @@ export function ScrollGauge() {
 
   useEffect(() => {
     let raf = 0
-    const update = () => {
+    let running = true
+    let progress = 0
+
+    const readScroll = () => {
       const doc = document.documentElement
       const max = doc.scrollHeight - window.innerHeight
-      const progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0
-      const angle = MIN_ANGLE + (MAX_ANGLE - MIN_ANGLE) * progress
-      needleRef.current?.setAttribute('transform', `rotate(${angle} 50 52)`)
+      progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0
     }
-    const onScroll = () => {
-      cancelAnimationFrame(raf)
-      raf = requestAnimationFrame(update)
+
+    const tick = (time: number) => {
+      if (!running) return
+      const base = MIN_ANGLE + (MAX_ANGLE - MIN_ANGLE) * progress
+      // Oscilação orgânica (±~2.5°) por cima da posição do scroll
+      const wobble = Math.sin(time / 220) * 2.1 + Math.sin(time / 520) * 0.7
+      needleRef.current?.setAttribute('transform', `rotate(${base + wobble} 50 52)`)
+      raf = requestAnimationFrame(tick)
     }
-    update()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
+
+    readScroll()
+    raf = requestAnimationFrame(tick)
+    window.addEventListener('scroll', readScroll, { passive: true })
+    window.addEventListener('resize', readScroll)
     return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
+      running = false
+      window.removeEventListener('scroll', readScroll)
+      window.removeEventListener('resize', readScroll)
       cancelAnimationFrame(raf)
     }
   }, [])
