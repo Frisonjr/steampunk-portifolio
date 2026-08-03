@@ -55,16 +55,15 @@ body::before {
   background: radial-gradient(ellipse at center, transparent 52%, rgba(0, 0, 0, 0.5) 100%);
 }
 
-/* Grão de filme (ruído) */
+/* Grão de filme (ruído) — sem mix-blend (caro demais no scroll) */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 99;
   pointer-events: none;
-  opacity: 0.55;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='0.14'/%3E%3C/svg%3E");
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
 }
 
 ::selection {
@@ -125,9 +124,8 @@ body::after {
   justify-content: space-between;
   padding: 0 1.6rem;
   background:
-    linear-gradient(180deg, rgba(52, 39, 19, 0.72), rgba(42, 31, 15, 0.92)),
+    linear-gradient(180deg, rgba(52, 39, 19, 0.92), rgba(42, 31, 15, 0.96)),
     repeating-linear-gradient(90deg, transparent 0 90px, rgba(0, 0, 0, 0.18) 90px 92px);
-  backdrop-filter: blur(8px);
   border-bottom: 2px solid rgba(201, 150, 46, 0.75);
   box-shadow:
     inset 0 1px 0 rgba(232, 194, 106, 0.25),
@@ -276,20 +274,6 @@ body::after {
   opacity: 0.9;
 }
 
-/* mecanismo Lottie ao fundo, atrás do nome */
-.hero-lottie {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(660px, 80vw);
-  aspect-ratio: 1 / 1;
-  transform: translate(-50%, -52%);
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.14;
-  filter: sepia(1) saturate(0.85) hue-rotate(-12deg) brightness(0.9);
-}
-
 /* engrenagens engrenadas */
 .hero-gears {
   position: absolute;
@@ -301,7 +285,6 @@ body::after {
 .hero-gear {
   position: absolute;
   opacity: 0;
-  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.6));
 }
 
 .gear-big { top: -130px; right: -120px; opacity: 0; }
@@ -340,14 +323,12 @@ body::after {
   height: 110px;
   transform: translateX(-50%);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 184, 77, 0.4), rgba(255, 184, 77, 0.08) 55%, transparent 72%);
-  filter: blur(6px);
+  background: radial-gradient(circle, rgba(255, 184, 77, 0.45), rgba(255, 184, 77, 0.1) 55%, transparent 72%);
   opacity: 0.7;
 }
 
 .bulb-svg {
   position: relative;
-  filter: drop-shadow(0 0 6px rgba(255, 184, 77, 0.45));
 }
 
 /* silhueta da cidade-fábrica */
@@ -443,11 +424,10 @@ body::after {
 .steam-puff {
   position: absolute;
   bottom: 0;
-  width: 60px;
-  height: 60px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(233, 216, 180, 0.45), transparent 70%);
-  filter: blur(13px);
+  background: radial-gradient(circle, rgba(233, 216, 180, 0.4), transparent 70%);
   opacity: 0;
 }
 
@@ -466,17 +446,16 @@ body::after {
   width: 130%;
   height: 100%;
   border-radius: 50%;
-  filter: blur(28px);
 }
 
 .fog-a {
   left: -20%;
-  background: radial-gradient(ellipse, rgba(190, 175, 140, 0.14), transparent 70%);
+  background: radial-gradient(ellipse, rgba(190, 175, 140, 0.16), transparent 70%);
 }
 
 .fog-b {
   left: -8%;
-  background: radial-gradient(ellipse, rgba(160, 150, 125, 0.11), transparent 70%);
+  background: radial-gradient(ellipse, rgba(160, 150, 125, 0.12), transparent 70%);
 }
 
 .hero-content {
@@ -1181,8 +1160,7 @@ body::after {
   content: '';
   position: absolute;
   inset: 40px -10% -30px;
-  background: radial-gradient(ellipse at 50% 100%, rgba(255, 120, 40, 0.22), transparent 65%);
-  filter: blur(10px);
+  background: radial-gradient(ellipse at 50% 100%, rgba(255, 120, 40, 0.28), transparent 65%);
 }
 
 .ember {
@@ -1200,24 +1178,11 @@ body::after {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 1fr;
   gap: 1.6rem;
   align-items: center;
-}
-
-/* máquina de correspondências (Lottie) */
-.contact-machine {
-  aspect-ratio: 1192 / 1920;
-  max-height: 460px;
-  justify-self: center;
-  opacity: 0;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5)) sepia(0.55) saturate(0.9) brightness(0.95);
-}
-
-.hero-lottie canvas,
-.contact-machine canvas {
-  width: 100%;
-  height: 100%;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .contact-card {
@@ -1357,10 +1322,6 @@ body::after {
 
   .contact-layout {
     grid-template-columns: 1fr;
-  }
-
-  .contact-machine {
-    max-height: 300px;
   }
 
   .wax-seal {

@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { animate, createTimeline, stagger } from "animejs";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { useLanguage } from "../i18n/useLanguage";
 import { smoothScrollTo } from "../utils/scroll";
 import { Airship } from "./Airship";
@@ -589,14 +588,6 @@ export function Hero() {
     <header className="hero" id="inicio" ref={rootRef}>
       <div className="hero-sky" aria-hidden="true">
         <Airship />
-      </div>
-
-      <div className="hero-lottie" aria-hidden="true">
-        <DotLottieReact
-          src={`${import.meta.env.BASE_URL}lottie/steampunk-letter.json`}
-          loop
-          autoplay
-        />
       </div>
 
       <div className="hero-gears" aria-hidden="true">

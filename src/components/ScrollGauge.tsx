@@ -8,9 +8,9 @@ export function ScrollGauge() {
   const needleRef = useRef<SVGGElement>(null)
 
   useEffect(() => {
-    let raf = 0
-    let running = true
     let progress = 0
+    let t = 0
+    let intervalId = 0
 
     const readScroll = () => {
       const doc = document.documentElement
@@ -18,24 +18,28 @@ export function ScrollGauge() {
       progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0
     }
 
-    const tick = (time: number) => {
-      if (!running) return
+    const apply = () => {
       const base = MIN_ANGLE + (MAX_ANGLE - MIN_ANGLE) * progress
-      // Oscilação orgânica (±~2.5°) por cima da posição do scroll
-      const wobble = Math.sin(time / 220) * 2.1 + Math.sin(time / 520) * 0.7
+      // ~12fps: barato o bastante pra manter o "vivo" sem rAF contínuo
+      t += 80
+      const wobble = Math.sin(t / 220) * 2.1 + Math.sin(t / 520) * 0.7
       needleRef.current?.setAttribute('transform', `rotate(${base + wobble} 50 52)`)
-      raf = requestAnimationFrame(tick)
+    }
+
+    const onScroll = () => {
+      readScroll()
+      apply()
     }
 
     readScroll()
-    raf = requestAnimationFrame(tick)
-    window.addEventListener('scroll', readScroll, { passive: true })
-    window.addEventListener('resize', readScroll)
+    apply()
+    intervalId = window.setInterval(apply, 80)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
     return () => {
-      running = false
-      window.removeEventListener('scroll', readScroll)
-      window.removeEventListener('resize', readScroll)
-      cancelAnimationFrame(raf)
+      window.clearInterval(intervalId)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
     }
   }, [])
 
